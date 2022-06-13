@@ -106,7 +106,7 @@ onUpdated(() => {
 .nav-info {
   position: fixed;
   right: 0;
-  top: 40px;
+  top: 100px;
   padding: 10px;
   background: #007aff;
   display: flex;

@@ -10,7 +10,6 @@ import PostsComponent from "./components/PostsComponent.vue";
 h1 {
   text-align: center;
   font-size: 30px;
-  border-bottom: 1px solid gray;
   padding: 20px;
   margin-bottom: 40px;
 }

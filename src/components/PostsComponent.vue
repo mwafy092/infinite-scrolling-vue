@@ -50,8 +50,8 @@ onUpdated(() => {
 <template>
   <div class="posts-container">
     <div class="post" v-for="post in state.posts" :key="post.id">
-      <h2>{{ post.title }}</h2>
-      <p>{{ post.body }}</p>
+      <img src="https://picsum.photos/400/400" alt="img" />
+      <p>{{ post.title }}</p>
     </div>
     <div v-if="state.loading" class="loading">
       <button class="btn btn-primary" type="button" disabled>
@@ -74,23 +74,18 @@ onUpdated(() => {
   grid-template-columns: 1fr 1fr;
 }
 .post {
-  background: rgb(24, 146, 24);
-  color: #fff;
-  padding: 20px;
-  border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-  text-align: center;
-  margin: 10px;
-}
-
-.post h2 {
-  font-size: 20px;
-  color: #333;
+  width: 400px;
+  margin: 10px auto;
+  background: #777;
+  color: #fff;
 }
 
 .post p {
   font-size: 18px;
+  text-align: center;
+  padding: 10px;
 }
 
 .loading {

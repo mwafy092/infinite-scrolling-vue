@@ -54,7 +54,14 @@ onUpdated(() => {
       <p>{{ post.body }}</p>
     </div>
     <div v-if="state.loading" class="loading">
-      <h1>Loading....</h1>
+      <button class="btn btn-primary" type="button" disabled>
+        <span
+          class="spinner-grow spinner-grow-sm"
+          role="status"
+          aria-hidden="true"
+        ></span>
+        Loading...
+      </button>
     </div>
   </div>
 </template>
@@ -87,16 +94,13 @@ onUpdated(() => {
 }
 
 .loading {
-  background: #000;
-  height: 100vh;
-  width: 100vw;
   position: fixed;
-  top: 0;
+  bottom: 0;
   right: 0;
   left: 0;
   display: grid;
   place-content: center;
   color: #fff;
-  opacity: 0.8;
+  z-index: 9999;
 }
 </style>

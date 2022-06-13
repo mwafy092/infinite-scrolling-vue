@@ -1,36 +1,16 @@
 <script setup>
 import axios from "axios";
-import { reactive } from "vue";
+import { reactive, onMounted } from "vue";
 
 let state = reactive({
   posts: [],
 });
-let loader = document.getElementById("app");
 function fetchPosts(n) {
   console.log("loading");
   axios
     .get(`https://jsonplaceholder.typicode.com/posts?_page=1&_limit=${n}`)
     .then((res) => (state.posts = res.data));
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  fetchPosts(10);
-  let options = {
-    root: null,
-    rootMargin: "0px",
-    threshold: 0.25,
-  };
-
-  function handleIntersect(entries, observer) {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        fetchPosts();
-      }
-    });
-  }
-  let observer = new IntersectionObserver(handleIntersect, options);
-  observer.observe(loader);
-});
 </script>
 
 <template>

@@ -5,14 +5,14 @@ import { reactive, onMounted, onUpdated } from "vue";
 let state = reactive({
   posts: [],
   loading: true,
-  pages: 1,
+  pages: 0,
 });
 
 async function fetchPosts(n, p) {
   try {
     state.loading = true;
     const response = await axios
-      .get(`https://jsonplaceholder.typicode.com/posts?_page=${1}&_limit=${n}`)
+      .get(`https://jsonplaceholder.typicode.com/posts?_page=${p}&_limit=${n}`)
       .then((res) => res);
 
     const data = await response.data;
@@ -25,10 +25,10 @@ async function fetchPosts(n, p) {
 function handleIntersecting(entries) {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
-      state.pages = state.pages + 1;
       setTimeout(() => {
         fetchPosts(10, state.pages);
       }, 2000);
+      state.pages = state.pages + 1;
     }
   });
 }

@@ -6,6 +6,7 @@ let state = reactive({
   posts: [],
   loading: true,
   pages: 0,
+  maxPages: 5,
 });
 
 async function fetchPosts(n, p) {
@@ -24,7 +25,7 @@ async function fetchPosts(n, p) {
 }
 function handleIntersecting(entries) {
   entries.forEach((entry) => {
-    if (entry.isIntersecting) {
+    if (entry.isIntersecting && state.pages < state.maxPages) {
       setTimeout(() => {
         fetchPosts(10, state.pages);
       }, 500);
@@ -68,6 +69,20 @@ onUpdated(() => {
         Loading...
       </button>
     </div>
+  </div>
+  <div v-if="state.pages === state.maxPages" class="warning">
+    <p>Warning: you've reached the maximum pages</p>
+    <p>to open more please press button</p>
+    <button
+      @click="
+        () => {
+          state.maxPages = 100;
+          fetchPosts(10);
+        }
+      "
+    >
+      open more posts
+    </button>
   </div>
 </template>
 
@@ -121,5 +136,22 @@ onUpdated(() => {
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 0;
+}
+.warning {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  place-content: center;
+  background: #fff;
+  opacity: 0.8;
+  font-weight: bold;
+}
+.warning button {
+  border: 1px solid black;
 }
 </style>

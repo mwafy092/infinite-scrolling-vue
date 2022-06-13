@@ -106,7 +106,8 @@ onUpdated(() => {
 .nav-info {
   position: fixed;
   right: 0;
-  padding: 20px;
+  top: 40px;
+  padding: 10px;
   background: #007aff;
   display: flex;
   justify-content: center;
@@ -119,5 +120,6 @@ onUpdated(() => {
 .nav-info p {
   font-size: 16px;
   font-weight: bold;
+  margin-bottom: 0;
 }
 </style>

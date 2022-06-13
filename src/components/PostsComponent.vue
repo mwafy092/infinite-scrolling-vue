@@ -27,7 +27,7 @@ function handleIntersecting(entries) {
     if (entry.isIntersecting) {
       setTimeout(() => {
         fetchPosts(10, state.pages);
-      }, 2000);
+      }, 500);
       state.pages = state.pages + 1;
     }
   });
@@ -50,6 +50,9 @@ onUpdated(() => {
 </script>
 
 <template>
+  <div class="nav-info">
+    <p>posts loaded {{ state.posts.length }}</p>
+  </div>
   <div class="posts-container">
     <div class="post" v-for="post in state.posts" :key="post.id">
       <img src="https://picsum.photos/400/400" alt="img" />
@@ -99,5 +102,21 @@ onUpdated(() => {
   place-content: center;
   color: #fff;
   z-index: 9999;
+}
+.nav-info {
+  position: fixed;
+  right: 0;
+  padding: 20px;
+  background: #ddd;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px 0 0 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+.nav-info p {
+  font-size: 16px;
+  font-weight: bold;
 }
 </style>

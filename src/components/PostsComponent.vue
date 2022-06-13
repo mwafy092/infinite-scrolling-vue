@@ -107,13 +107,14 @@ onUpdated(() => {
   position: fixed;
   right: 0;
   padding: 20px;
-  background: #ddd;
+  background: #007aff;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 5px 0 0 5px;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
     rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  color: #fff;
 }
 .nav-info p {
   font-size: 16px;

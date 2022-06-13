@@ -5,12 +5,37 @@ import { reactive, onMounted } from "vue";
 let state = reactive({
   posts: [],
 });
-function fetchPosts(n) {
-  console.log("loading");
-  axios
-    .get(`https://jsonplaceholder.typicode.com/posts?_page=1&_limit=${n}`)
-    .then((res) => (state.posts = res.data));
+
+async function fetchPosts(n) {
+  try {
+    const response = await axios
+      .get(`https://jsonplaceholder.typicode.com/posts?_page=1&_limit=${n}`)
+      .then((res) => res);
+    const data = await response.data;
+    state.posts = state.posts.concat(data);
+  } catch (err) {
+    console.log(err);
+  }
 }
+function handleIntersecting(entries) {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      fetchPosts(10);
+      console.log(state.posts);
+    }
+  });
+}
+onMounted(() => {
+  fetchPosts(10);
+  const options = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.5,
+  };
+  const observer = new IntersectionObserver(handleIntersecting, options);
+  const observerHtmlElement = document.getElementById("observer");
+  observer.observe(observerHtmlElement);
+});
 </script>
 
 <template>

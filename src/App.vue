@@ -2,8 +2,12 @@
 import PostsComponent from "./components/PostsComponent.vue";
 </script>
 <template>
-  <div>App</div>
+  <h1>Observer data loader</h1>
   <PostsComponent />
 </template>
 
-<style scoped></style>
+<style scoped>
+h1 {
+  text-align: center;
+}
+</style>
